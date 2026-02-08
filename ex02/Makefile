@@ -1,7 +1,7 @@
-NAME = convert
+NAME = a.out
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -ggdb -std=c++98
-SRCS = main.cpp ScalarConverter.cpp
+SRCS = main.cpp
 OBJDIR = obj
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 
