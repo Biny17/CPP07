@@ -26,7 +26,7 @@ int main()
     }
     a_int[0] = 1;
     a_int[3] = 17;
-    a_int = a_int;
+    // a_int = a_int; remove -Werror to test this
     print_array(a_int);
     // Array<char> a_char(a_int);
     Array<int> cp (a_int);
