@@ -1,6 +1,7 @@
 #pragma once
 
 #include <exception>
+#include <cstdlib>
 
 template <typename T>
 class Array
@@ -30,7 +31,7 @@ public:
 
     Array(unsigned int n)
     : len(n) {
-        elems = new T[len];
+        elems = new T[len]();
     }
 
     Array(const Array &other)
@@ -42,6 +43,9 @@ public:
     }
     Array& operator=(const Array &rhs)
     {
+        if (rhs.elems == elems) {
+            return *this;
+        }
         delete[] elems;
         len = rhs.len;
         elems = new T[len];
@@ -49,6 +53,7 @@ public:
             elems[i] = rhs.elems[i];
         return *this;
     }
+
     T& operator[](unsigned int i)
     {
         if (i >= len) {
@@ -57,6 +62,16 @@ public:
             return *(elems+i);
         }
     }
+
+    const T& operator[](unsigned int i) const
+    {
+        if (i >= len) {
+            throw OutOfRange();
+        } else {
+            return *(elems+i);
+        }
+    }
+
     unsigned int size() const
     {
         return len;
